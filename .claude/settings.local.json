@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -m pytest tests/integration/test_database_init.py -v)",
+      "Bash(pip install:*)",
+      "Bash(.venv/Scripts/python.exe -m pip install -e .)",
+      "Bash(uv pip:*)",
+      "Bash(python -m playwright install chromium)",
+      "Bash(python -m pytest tests/unit/test_denoiser.py -v)",
+      "Bash(python -m pytest tests/unit/test_ai_engine.py -v)",
+      "Bash(python -m pytest tests/unit/test_kb_writer.py -v)",
+      "Bash(python -m pytest tests/api/test_url_validation.py -v)",
+      "Bash(python -m pytest tests/unit/ tests/api/ -v --tb=short)",
+      "Bash(python -c \"from main import app; print\\('✓ FastAPI app imports successfully'\\); print\\(f'✓ Registered routes: {len\\(app.routes\\)}'\\)\")",
+      "Bash(python -c \"from main import app; print\\('FastAPI app imports successfully'\\); print\\(f'Registered routes: {len\\(app.routes\\)}'\\)\")",
+      "Bash(python -c \"import sys; sys.path.insert\\(0, '.'\\); from ui import app; print\\('Streamlit app imports successfully'\\)\")",
+      "Bash(python -m pytest tests/unit/ tests/api/ tests/integration/ -v --tb=line -q)",
+      "Bash(python -m pytest tests/integration/test_pipeline.py -v --tb=short)",
+      "Bash(python -m pytest -v --tb=line -q)"
+    ]
+  }
+}

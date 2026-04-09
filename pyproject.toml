@@ -1,7 +1,30 @@
 [project]
 name = "webscribe"
 version = "0.1.0"
-description = "Add your description here"
+description = "A web-based utility that converts messy web pages into clean, structured Markdown files"
 readme = "README.md"
 requires-python = ">=3.13"
-dependencies = []
+dependencies = [
+    "fastapi",
+    "uvicorn",
+    "sqlmodel",
+    "httpx",
+    "beautifulsoup4",
+    "lxml",
+    "markdownify",
+    "playwright",
+    "openai",
+    "streamlit",
+    "python-dotenv",
+    "hypothesis",
+    "pytest",
+    "pytest-asyncio",
+]
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["api", "workers", "scrapers", "denoiser", "ai_engine", "kb", "ui", "tests"]
+exclude = ["resources*", ".venv*", ".git*", ".kiro*"]

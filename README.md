@@ -50,7 +50,7 @@ A web-based utility that converts messy web pages into clean, structured Markdow
 cd webscribe
 
 # Install dependencies
-uv pip install -e .
+pip install -e .
 
 # Install Playwright browser (for dynamic scraping)
 python -m playwright install chromium
@@ -58,17 +58,26 @@ python -m playwright install chromium
 
 ### Configuration
 
-Set environment variables:
+Create a `.env` file in the project root:
+
+```bash
+# Copy the example file
+cp .env.example .env
+```
+
+Edit `.env` and add your API key:
 
 ```bash
 # Required: Your LLM API key
-export LLM_API_KEY="your-api-key-here"
+LLM_API_KEY=your-api-key-here
 
-# Optional: Custom configuration
-export LLM_BASE_URL="https://api.openai.com/v1"  # Default
-export LLM_MODEL="gpt-4o-mini"  # Default
-export KB_DIR="./knowledge_base"  # Default
+# Optional: Custom configuration (defaults shown)
+LLM_BASE_URL=https://api.openai.com/v1
+LLM_MODEL=gpt-4o-mini
+KB_DIR=./knowledge_base
 ```
+
+**Note**: The `.env` file is gitignored and will not be committed to version control.
 
 ### Running the Application
 
@@ -145,23 +154,33 @@ webscribe/
 ├── kb/               # Knowledge Base file writer
 ├── ui/               # Streamlit frontend
 ├── tests/            # Test suite
-├── config.py         # Configuration
+├── config.py         # Configuration loader
 ├── models.py         # SQLModel data models
 ├── database.py       # Database initialization
-└── main.py           # FastAPI app entry point
+├── main.py           # FastAPI app entry point
+├── .env.example      # Environment variables template
+└── knowledge_base/   # Saved markdown notes (gitignored)
 ```
 
 ## Configuration
 
-All configuration is done via environment variables. See `config.py` for available options:
+All configuration is done via environment variables loaded from a `.env` file. See [.env.example](.env.example) for a template and [config.py](config.py) for all available options:
 
-- `DATABASE_URL`: SQLite database path
-- `KB_DIR`: Knowledge Base directory
-- `LLM_BASE_URL`: LLM API base URL
-- `LLM_API_KEY`: LLM API key
-- `LLM_MODEL`: Model to use
-- `STATIC_SCRAPER_TIMEOUT`: Timeout for static scraper (seconds)
-- `DYNAMIC_SCRAPER_TIMEOUT`: Timeout for dynamic scraper (seconds)
+**Required:**
+- `LLM_API_KEY`: Your LLM API key (OpenAI or compatible)
+
+**Optional:**
+- `LLM_BASE_URL`: LLM API base URL (default: `https://api.openai.com/v1`)
+- `LLM_MODEL`: Model to use (default: `gpt-4o-mini`)
+- `DATABASE_URL`: SQLite database path (default: `sqlite:///webscribe.db`)
+- `KB_DIR`: Knowledge Base directory (default: `./knowledge_base`)
+- `API_HOST`: API server host (default: `0.0.0.0`)
+- `API_PORT`: API server port (default: `8000`)
+- `STATIC_SCRAPER_TIMEOUT`: Timeout for static scraper in seconds (default: `30`)
+- `DYNAMIC_SCRAPER_TIMEOUT`: Timeout for dynamic scraper in seconds (default: `30`)
+- `MAX_CONCURRENT_JOBS`: Maximum concurrent jobs (default: `5`)
+- `AI_RETRY_COUNT`: Number of AI API retries (default: `3`)
+- `AI_RETRY_BASE_DELAY`: Base delay for exponential backoff (default: `1.0`)
 
 ## Development
 

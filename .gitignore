@@ -8,3 +8,56 @@ wheels/
 
 # Virtual environments
 .venv
+venv/
+env/
+
+# Environment variables (contains API keys)
+.env
+
+# Database files (user data)
+*.db
+*.sqlite
+*.sqlite3
+
+# Knowledge base (user-generated content)
+knowledge_base/
+
+# Testing
+.hypothesis/
+.pytest_cache/
+.coverage
+htmlcov/
+coverage.xml
+*.cover
+
+# Logs
+*.log
+logs/
+
+# Playwright browsers
+.playwright/
+
+# Claude Code (local AI assistant data)
+# .claude/
+
+# IDEs and editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+*.sublime-project
+*.sublime-workspace
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+*.bak
+
+# Package manager lock files (optional - team decision)
+# Uncomment if not using uv as primary package manager
+# uv.lock
